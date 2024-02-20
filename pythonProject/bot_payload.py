@@ -173,7 +173,7 @@ async def choose_shipping(query: types.ShippingQuery):
     elif query.shipping_address.country_code:
         await bot.answer_shipping_query(shipping_query_id=query.id,
                                         ok=False,
-                                        error_message='Мы патриоты и работаем только по России\nВ выбранную вами страну товар не доставляемg')
+                                        error_message='Мы патриоты и работаем только по России\nВ выбранную вами страну товар не доставляемga')
 
 
 @dp.pre_checkout_query()
