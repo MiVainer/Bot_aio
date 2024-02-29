@@ -1,0 +1,6 @@
+.venv
+baza
+baza.json
+post.json
+testdb.csv
+.env

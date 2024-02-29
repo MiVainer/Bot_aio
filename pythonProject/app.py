@@ -2,7 +2,9 @@
 # ---Program by MiVainer---#
 import asyncio
 import logging
-from aiogram.utils.keyboard import ReplyKeyboardBuilder
+from random import randint
+
+from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 from aiogram.enums import ParseMode
 from aiogram.types import Message, FSInputFile, URLInputFile, BufferedInputFile
 from aiogram import Bot, Dispatcher, types, F, html
@@ -204,6 +206,27 @@ async def reply_builder(message: types.Message):
         reply_markup=builder.as_markup(resize_keyboard=True),
     )
 
+# Создание колбэка
+@dp.message(Command("random"))
+async def cmd_random(message: types.Message):
+    builder = InlineKeyboardBuilder()
+    builder.add(types.InlineKeyboardButton(
+        text="Нажми меня",
+        callback_data="random_value")
+    )
+    await message.answer(
+        "Нажмите на кнопку, чтобы бот отправил число от 1 до 10",
+        reply_markup=builder.as_markup()
+    )
+
+# Обработка колбэка
+@dp.callback_query(F.data == "random_value")
+async def send_random_value(callback: types.CallbackQuery):
+    await callback.message.answer(str(randint(1, 10)))
+    await callback.answer(
+        text="Спасибо, что воспользовались ботом!",
+        show_alert=True
+    )
 
 # Запуск процесса поллинга новых апдейтов
 async def main():
