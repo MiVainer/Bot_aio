@@ -12,7 +12,7 @@ executor==23.2
 fasteners==0.19
 frozenlist==1.4.1
 humanfriendly==10.0
-idna==3.6
+idna==3.7
 magic-filter==1.0.12
 multidict==6.0.5
 property-manager==3.0
